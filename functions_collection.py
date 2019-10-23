@@ -37,7 +37,7 @@ def test_create_dataframe(df, column_names):
     # The values in each column have the same python type
     for i in range(0,df.shape[1] - 1):
         for j in range(i + 1, df.shape[1]):
-            if type(df.iloc[0, i]) == type(df.iloc[0, j]):
+            if type(df.iloc[0, i]) != type(df.iloc[0, j]):
                 return False
     # There are at least 10 rows in the DataFrame.
     if df.shape[0] < 10:
