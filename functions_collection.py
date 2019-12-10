@@ -34,11 +34,15 @@ def test_create_dataframe(df, column_names):
     set_column = set(column_names)
     if set_df_column != set_column:
         return False
-    # The values in each column have the same python type
-    for i in range(0,df.shape[1] - 1):
-        for j in range(i + 1, df.shape[1]):
-            if type(df.iloc[0, i]) != type(df.iloc[0, j]):
+    # 2 same type in each column
+    for i in range(len(list(df.dtypes))):
+        # print(i)
+        for j in range(list(df.count())[i]):
+            if (type(df.iloc[j,i]) != type(df.iloc[0,i])):
+                # print(str(type(df.iloc[j,i]))+'vs'+str(type(df.iloc[0,i])))
                 return False
+            # else: continue
+            
     # There are at least 10 rows in the DataFrame.
     if df.shape[0] < 10:
         return False
